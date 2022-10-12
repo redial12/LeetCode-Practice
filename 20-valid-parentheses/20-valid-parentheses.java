@@ -16,13 +16,15 @@ class Solution {
             return false;
         
         for(int i = 0; i < s.length(); i++){
-            //if at closing parentheses while stack is empty
-            if(!openParentheses.containsKey(s.charAt(i)) && stack.size() == 0){
-                return false;
-            }
+            //add current opening parentheses to stack
             if(openParentheses.containsKey(s.charAt(i))){
                 stack.add(s.charAt(i));
             }else{
+                //if at closing parentheses while stack is empty
+                if(stack.size() == 0){
+                    return false;
+                }
+                //remove from top of stack and check if parenthesis is the correct closing parentheses
                 char stackChar = stack.pop();
                 if(openParentheses.get(stackChar) != s.charAt(i)){
                     return false;
